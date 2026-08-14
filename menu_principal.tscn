@@ -1,0 +1,34 @@
+[gd_scene format=3 uid="uid://8cfiqavj8c4r"]
+
+[ext_resource type="Script" uid="uid://culksxry8mivy" path="res://menu_principal.gd" id="1_bj1uy"]
+
+[node name="MenuPrincipal" type="Control" unique_id=473552653]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_bj1uy")
+
+[node name="Panel" type="Panel" parent="." unique_id=55060752]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 438.0
+offset_bottom = 227.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CenterContainer" type="CenterContainer" parent="Panel" unique_id=1343335543]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="BotonJugar" type="Button" parent="Panel/CenterContainer" unique_id=65787626]
+layout_mode = 2
+text = "A JUGAR "
+
+[connection signal="pressed" from="Panel/CenterContainer/BotonJugar" to="." method="_on_boton_jugar_pressed"]

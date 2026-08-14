@@ -1,0 +1,16 @@
+[remap]
+
+importer="dialogue_manager"
+importer_version=15
+type="Resource"
+uid="uid://dhhvc8kr81p01"
+path="res://.godot/imported/Mi_dialogo.dialogue-ea23865eaf91e7e79cc3115495ac2ba1.tres"
+
+[deps]
+
+source_file="res://Mi_dialogo.dialogue"
+dest_files=["res://.godot/imported/Mi_dialogo.dialogue-ea23865eaf91e7e79cc3115495ac2ba1.tres"]
+
+[params]
+
+defaults=true

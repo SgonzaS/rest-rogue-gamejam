@@ -1,0 +1,53 @@
+[gd_scene format=3 uid="uid://njg2bncfiuhr"]
+
+[ext_resource type="Script" uid="uid://ylnjlcfww0ub" path="res://Nodos/horno.gd" id="1_4xv24"]
+[ext_resource type="Texture2D" uid="uid://c3h2rhjefuyx1" path="res://Art/tiles/cocinita.png" id="2_6xy88"]
+[ext_resource type="PackedScene" uid="uid://dr0peqolbskvj" path="res://interactable.tscn" id="2_rye72"]
+[ext_resource type="Script" uid="uid://c35yhm4yg30i0" path="res://recetarios/recetario.gd" id="4_kwsdw"]
+[ext_resource type="Resource" uid="uid://d0843ng5jfrmh" path="res://Items/Hongo.tres" id="5_kwsdw"]
+[ext_resource type="Resource" uid="uid://gfcxxyhgnmpi" path="res://Items/Brocheta.tres" id="6_6xy88"]
+[ext_resource type="Resource" uid="uid://2082h5gqnebl" path="res://Items/Papa.tres" id="7_6xy88"]
+[ext_resource type="Resource" uid="uid://c7hd37ng8gk66" path="res://Items/Estofado.tres" id="8_84jgg"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rye72"]
+size = Vector2(16, 16)
+
+[sub_resource type="Resource" id="Resource_84jgg"]
+script = ExtResource("4_kwsdw")
+nombre_comida = "Brochetas"
+item_resultado = ExtResource("6_6xy88")
+ingrediente = ExtResource("5_kwsdw")
+cantidad = 1
+metadata/_custom_type_script = "uid://c35yhm4yg30i0"
+
+[sub_resource type="Resource" id="Resource_kwsdw"]
+script = ExtResource("4_kwsdw")
+nombre_comida = "Estofado"
+item_resultado = ExtResource("8_84jgg")
+ingrediente = ExtResource("7_6xy88")
+cantidad = 2
+metadata/_custom_type_script = "uid://c35yhm4yg30i0"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_84jgg"]
+size = Vector2(58, 53)
+
+[node name="Horno" type="StaticBody2D" unique_id=1221670713]
+collision_layer = 2
+collision_mask = 0
+script = ExtResource("1_4xv24")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1348920406]
+shape = SubResource("RectangleShape2D_rye72")
+debug_color = Color(0.89076686, 0.10823249, 0.74592096, 0.41960785)
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=390628101]
+texture = ExtResource("2_6xy88")
+
+[node name="Interactable" parent="." unique_id=398723352 instance=ExtResource("2_rye72")]
+collision_mask = 1
+interaction_name = "Cocinar (E)"
+recetas_disponibles = Array[ExtResource("4_kwsdw")]([SubResource("Resource_84jgg"), SubResource("Resource_kwsdw")])
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Interactable" unique_id=1056243936]
+position = Vector2(-3, 5.5)
+shape = SubResource("RectangleShape2D_84jgg")

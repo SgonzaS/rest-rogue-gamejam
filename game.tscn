@@ -1,0 +1,113 @@
+[gd_scene format=3 uid="uid://bq8bockkoo7pr"]
+
+[ext_resource type="PackedScene" uid="uid://bq6gn3ml2fcd5" path="res://Nodos/player.tscn" id="1_80nbo"]
+[ext_resource type="PackedScene" uid="uid://c73q2amcffhqt" path="res://world/level/Restaurante.tscn" id="2_feb5d"]
+[ext_resource type="Texture2D" uid="uid://bxewyahl5465c" path="res://Art/heroes/Bruja/2d_lights_and_shadows_neutral_point_light.webp" id="3_hve3p"]
+[ext_resource type="PackedScene" uid="uid://boyfgf3yjehec" path="res://Scripts/NPC/spawn_npc.tscn" id="4_fc0e3"]
+[ext_resource type="Script" uid="uid://b051i106up3k8" path="res://Nodos/skill_bar.gd" id="5_ryrav"]
+[ext_resource type="PackedScene" uid="uid://d4mxn68ip66kj" path="res://Nodos/spell_button.tscn" id="6_eow3j"]
+[ext_resource type="Script" uid="uid://bmnqdhoq7pwk5" path="res://Nodos/reloj_cierre.gd" id="6_vef74"]
+[ext_resource type="PackedScene" uid="uid://njg2bncfiuhr" path="res://Horno.tscn" id="7_eow3j"]
+[ext_resource type="PackedScene" uid="uid://yev4xsicq7it" path="res://llave.tscn" id="8_j5wjh"]
+[ext_resource type="Script" uid="uid://cjvvf6csg2y6l" path="res://Nodos/puerta.gd" id="10_hve3p"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fc0e3"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7jktm"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ryrav"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hve3p"]
+size = Vector2(36, 24)
+
+[node name="Game" type="Node2D" unique_id=1664974854]
+
+[node name="level" parent="." unique_id=1006525662 instance=ExtResource("2_feb5d")]
+position = Vector2(-1, 1)
+
+[node name="Player" parent="." unique_id=1923705652 instance=ExtResource("1_80nbo")]
+position = Vector2(304, 178)
+
+[node name="PointLight2D" type="PointLight2D" parent="Player" unique_id=315165282]
+scale = Vector2(0.6953125, 0.6953125)
+texture = ExtResource("3_hve3p")
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1259848901]
+position = Vector2(242, 136)
+zoom = Vector2(2.32, 2.32)
+
+[node name="Node2D" type="Node2D" parent="." unique_id=1760740112]
+position = Vector2(253, 261)
+
+[node name="Spawn_NPC" parent="." unique_id=1835422231 instance=ExtResource("4_fc0e3")]
+
+[node name="Punto A" type="Area2D" parent="." unique_id=1895420794]
+position = Vector2(98, 130)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Punto A" unique_id=1037832872]
+shape = SubResource("RectangleShape2D_fc0e3")
+
+[node name="Punto B" type="Area2D" parent="." unique_id=1611220227]
+position = Vector2(226, 145)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Punto B" unique_id=1546592491]
+shape = SubResource("RectangleShape2D_7jktm")
+
+[node name="Punto C" type="Area2D" parent="." unique_id=1073191572]
+position = Vector2(147, 209)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Punto C" unique_id=1527209800]
+visible = false
+shape = SubResource("RectangleShape2D_ryrav")
+
+[node name="Horno" parent="." unique_id=1221670713 instance=ExtResource("7_eow3j")]
+position = Vector2(398, 28)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1861276914]
+
+[node name="SkillBar" type="HBoxContainer" parent="CanvasLayer" unique_id=1504696222]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -128.0
+offset_top = -40.0
+grow_horizontal = 0
+grow_vertical = 0
+script = ExtResource("5_ryrav")
+
+[node name="SpellButton" parent="CanvasLayer/SkillBar" unique_id=1512589643 instance=ExtResource("6_eow3j")]
+layout_mode = 2
+
+[node name="SpellButton2" parent="CanvasLayer/SkillBar" unique_id=1719385723 instance=ExtResource("6_eow3j")]
+layout_mode = 2
+
+[node name="SpellButton3" parent="CanvasLayer/SkillBar" unique_id=1643488752 instance=ExtResource("6_eow3j")]
+layout_mode = 2
+
+[node name="RelojCierre" type="ProgressBar" parent="CanvasLayer" unique_id=1727551952]
+offset_left = 20.0
+offset_top = 191.0
+offset_right = 24.0
+offset_bottom = 218.0
+value = 100.0
+script = ExtResource("6_vef74")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=693969239]
+script = ExtResource("10_hve3p")
+new_escene_path = "res://world/level/Bosque.tscn"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=2096180802]
+position = Vector2(191, 12)
+shape = SubResource("RectangleShape2D_hve3p")
+
+[node name="llave" parent="." unique_id=428102929 instance=ExtResource("8_j5wjh")]
+position = Vector2(266, 248)
+
+[node name="config" type="Node" parent="." unique_id=239945997]
+
+[node name="CanvasModulate" type="CanvasModulate" parent="config" unique_id=1498972233]
+color = Color(0.46618086, 0.4661808, 0.4661808, 1)
+
+[connection signal="body_entered" from="Area2D" to="Area2D" method="_on_body_entered"]

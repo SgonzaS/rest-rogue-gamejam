@@ -1,0 +1,35 @@
+[gd_scene format=3 uid="uid://bq8bockkoo7pr"]
+
+[ext_resource type="PackedScene" uid="uid://bq6gn3ml2fcd5" path="res://Nodos/player.tscn" id="1_80nbo"]
+[ext_resource type="PackedScene" uid="uid://c73q2amcffhqt" path="res://world/level/level.tscn" id="2_feb5d"]
+[ext_resource type="PackedScene" uid="uid://br185fhnsu86b" path="res://Nodos/enemy1.tscn" id="3_feb5d"]
+[ext_resource type="PackedScene" uid="uid://boyfgf3yjehec" path="res://Scripts/NPC/spawn_enemy.tscn" id="4_fc0e3"]
+
+[node name="Game" type="Node2D" unique_id=1664974854]
+
+[node name="level" parent="." unique_id=1006525662 instance=ExtResource("2_feb5d")]
+position = Vector2(-1, 1)
+
+[node name="Player" parent="." unique_id=1923705652 instance=ExtResource("1_80nbo")]
+position = Vector2(308, 178)
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1259848901]
+position = Vector2(242, 136)
+zoom = Vector2(2.32, 2.32)
+
+[node name="Enemy1" parent="." unique_id=1803888204 instance=ExtResource("3_feb5d")]
+position = Vector2(63, 78)
+
+[node name="Node2D" type="Node2D" parent="." unique_id=1760740112]
+position = Vector2(254, 262)
+
+[node name="Spawn_enemy" parent="." unique_id=1835422231 instance=ExtResource("4_fc0e3")]
+
+[node name="Punto A" type="Marker2D" parent="." unique_id=1252291462]
+position = Vector2(70, 125)
+
+[node name="Punto B" type="Marker2D" parent="." unique_id=372950552]
+position = Vector2(151, 124)
+
+[node name="Punto C" type="Marker2D" parent="." unique_id=591637779]
+position = Vector2(119, 213)

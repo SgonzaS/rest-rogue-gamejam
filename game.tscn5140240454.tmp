@@ -1,0 +1,86 @@
+[gd_scene format=3 uid="uid://bq8bockkoo7pr"]
+
+[ext_resource type="PackedScene" uid="uid://bq6gn3ml2fcd5" path="res://Nodos/player.tscn" id="1_80nbo"]
+[ext_resource type="PackedScene" uid="uid://c73q2amcffhqt" path="res://world/level/Restaurante.tscn" id="2_feb5d"]
+[ext_resource type="PackedScene" uid="uid://boyfgf3yjehec" path="res://Scripts/NPC/spawn_enemy.tscn" id="4_fc0e3"]
+[ext_resource type="Script" uid="uid://b051i106up3k8" path="res://Nodos/skill_bar.gd" id="5_ryrav"]
+[ext_resource type="PackedScene" uid="uid://d4mxn68ip66kj" path="res://Nodos/spell_button.tscn" id="6_eow3j"]
+[ext_resource type="Script" uid="uid://cjvvf6csg2y6l" path="res://Nodos/puerta.gd" id="10_hve3p"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fc0e3"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7jktm"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ryrav"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hve3p"]
+size = Vector2(20, 18)
+
+[node name="Game" type="Node2D" unique_id=1664974854]
+
+[node name="level" parent="." unique_id=1006525662 instance=ExtResource("2_feb5d")]
+position = Vector2(-1, 1)
+
+[node name="Player" parent="." unique_id=1923705652 instance=ExtResource("1_80nbo")]
+position = Vector2(308, 178)
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1259848901]
+position = Vector2(242, 136)
+zoom = Vector2(2.32, 2.32)
+
+[node name="Node2D" type="Node2D" parent="." unique_id=1760740112]
+position = Vector2(253, 261)
+
+[node name="Spawn_NPC" parent="." unique_id=1835422231 instance=ExtResource("4_fc0e3")]
+
+[node name="Punto A" type="Area2D" parent="." unique_id=1895420794]
+position = Vector2(70, 125)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Punto A" unique_id=1037832872]
+shape = SubResource("RectangleShape2D_fc0e3")
+
+[node name="Punto B" type="Area2D" parent="." unique_id=1611220227]
+position = Vector2(151, 124)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Punto B" unique_id=1546592491]
+shape = SubResource("RectangleShape2D_7jktm")
+
+[node name="Punto C" type="Area2D" parent="." unique_id=1073191572]
+position = Vector2(119, 213)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Punto C" unique_id=1527209800]
+position = Vector2(0, 3)
+shape = SubResource("RectangleShape2D_ryrav")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1861276914]
+
+[node name="SkillBar" type="HBoxContainer" parent="CanvasLayer" unique_id=1504696222]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -128.0
+offset_top = -40.0
+grow_horizontal = 0
+grow_vertical = 0
+script = ExtResource("5_ryrav")
+
+[node name="SpellButton" parent="CanvasLayer/SkillBar" unique_id=1512589643 instance=ExtResource("6_eow3j")]
+layout_mode = 2
+
+[node name="SpellButton2" parent="CanvasLayer/SkillBar" unique_id=1719385723 instance=ExtResource("6_eow3j")]
+layout_mode = 2
+
+[node name="SpellButton3" parent="CanvasLayer/SkillBar" unique_id=1643488752 instance=ExtResource("6_eow3j")]
+layout_mode = 2
+
+[node name="Area2D" type="Area2D" parent="." unique_id=693969239]
+script = ExtResource("10_hve3p")
+new_escene_path = "res://world/level/Bosque.tscn"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=2096180802]
+position = Vector2(183, 10)
+shape = SubResource("RectangleShape2D_hve3p")
+
+[connection signal="body_entered" from="Area2D" to="Area2D" method="_on_body_entered"]

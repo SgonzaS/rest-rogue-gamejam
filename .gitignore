@@ -1,0 +1,19 @@
+# Archivos del sistema de Godot 4
+.godot/
+.import/
+export_presets.cfg
+
+# Archivos de identificación única (Muy propensos a conflictos)
+*.uid
+
+# Builds y temporales de plataformas
+android/
+/android/
+vsnstudio/
+.mono/
+mono/
+
+# Archivos del sistema operativo
+.DS_Store
+Thumbs.db
+

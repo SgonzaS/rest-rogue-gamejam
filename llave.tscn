@@ -1,0 +1,41 @@
+[gd_scene format=3 uid="uid://yev4xsicq7it"]
+
+[ext_resource type="Script" uid="uid://d04rw11y10s1p" path="res://Nodos/llave.gd" id="1_wey48"]
+[ext_resource type="Texture2D" uid="uid://cu4g58qlwmqd" path="res://Art/props_itens/key_silver.png" id="2_1iayy"]
+[ext_resource type="PackedScene" uid="uid://dr0peqolbskvj" path="res://interactable.tscn" id="3_kimbk"]
+[ext_resource type="Script" uid="uid://c35yhm4yg30i0" path="res://recetarios/recetario.gd" id="4_2wb1e"]
+[ext_resource type="Resource" uid="uid://d0843ng5jfrmh" path="res://Items/Hongo.tres" id="5_oiiwe"]
+[ext_resource type="Resource" uid="uid://gfcxxyhgnmpi" path="res://Items/Brocheta.tres" id="6_cyhu0"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rye72"]
+size = Vector2(16, 16)
+
+[sub_resource type="Resource" id="Resource_84jgg"]
+script = ExtResource("4_2wb1e")
+nombre_comida = "Brochetas"
+item_resultado = ExtResource("6_cyhu0")
+ingrediente = ExtResource("5_oiiwe")
+cantidad = 1
+metadata/_custom_type_script = "uid://c35yhm4yg30i0"
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_kwsdw"]
+radius = 17.0
+
+[node name="llave" type="StaticBody2D" unique_id=1221670713]
+collision_layer = 2
+collision_mask = 0
+script = ExtResource("1_wey48")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1348920406]
+shape = SubResource("RectangleShape2D_rye72")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=390628101]
+texture = ExtResource("2_1iayy")
+
+[node name="Interactable" parent="." unique_id=398723352 instance=ExtResource("3_kimbk")]
+collision_mask = 1
+interaction_name = "Abrir (E)"
+recetas_disponibles = Array[ExtResource("4_2wb1e")]([SubResource("Resource_84jgg")])
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Interactable" unique_id=1056243936]
+shape = SubResource("CircleShape2D_kwsdw")

@@ -1,0 +1,25 @@
+[gd_scene format=3 uid="uid://njg2bncfiuhr"]
+
+[ext_resource type="Script" uid="uid://ylnjlcfww0ub" path="res://Nodos/horno.gd" id="1_4xv24"]
+[ext_resource type="Texture2D" uid="uid://180vcuqmfwlw" path="res://Art/tiles/wall/wall_3.png" id="1_76p4a"]
+[ext_resource type="PackedScene" uid="uid://dr0peqolbskvj" path="res://interactable.tscn" id="2_rye72"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rye72"]
+size = Vector2(16, 16)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_4xv24"]
+radius = 16.0
+
+[node name="Horno" type="StaticBody2D" unique_id=1221670713]
+script = ExtResource("1_4xv24")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1348920406]
+shape = SubResource("RectangleShape2D_rye72")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=390628101]
+texture = ExtResource("1_76p4a")
+
+[node name="Interactable" parent="." unique_id=398723352 instance=ExtResource("2_rye72")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Interactable" unique_id=1056243936]
+shape = SubResource("CircleShape2D_4xv24")
