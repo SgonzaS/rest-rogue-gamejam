@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://b7ht7m3b5cyuq"]
+
+[ext_resource type="Script" uid="uid://hfw2e0qa6qh5" path="res://Nodos/item_suelo.gd" id="1_k4ubb"]
+[ext_resource type="Texture2D" uid="uid://dmqh2g7pbj6gg" path="res://Art/props_itens/potion_red.png" id="2_q71lj"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_155wd"]
+size = Vector2(13, 14)
+
+[node name="ItemSuelo" type="Area2D" unique_id=1606474200]
+script = ExtResource("1_k4ubb")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=387631974]
+position = Vector2(0, -2)
+texture = ExtResource("2_q71lj")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=645292928]
+position = Vector2(-0.5, -3)
+shape = SubResource("RectangleShape2D_155wd")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

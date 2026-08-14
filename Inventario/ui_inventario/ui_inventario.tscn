@@ -1,0 +1,82 @@
+[gd_scene format=3 uid="uid://bug3m3aqou4yb"]
+
+[ext_resource type="Script" uid="uid://ddfi8m8l17wuh" path="res://Inventario/ui_inventario/ui_inventario.gd" id="1_p683x"]
+[ext_resource type="PackedScene" uid="uid://l6vsqr80f6q5" path="res://Inventario/ui_inventario/espacio.tscn" id="1_tfkak"]
+[ext_resource type="Texture2D" uid="uid://xdjlkmghh67o" path="res://Art/ui (new)/icono cofre.png" id="2_x05rq"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_tfkak"]
+load_path = "res://.godot/imported/mochila.png-19c1bc43b007c4f81ec297d405000600.ctex"
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_p683x"]
+texture = SubResource("CompressedTexture2D_tfkak")
+texture_margin_left = 8.0
+texture_margin_top = 8.0
+texture_margin_right = 8.0
+texture_margin_bottom = 8.0
+
+[node name="Control" type="Control" unique_id=1513825622]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_p683x")
+
+[node name="BotonMochila" type="TextureButton" parent="." unique_id=1544807207]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 8.0
+offset_top = -42.0
+offset_right = 41.0
+offset_bottom = -9.0
+grow_vertical = 0
+texture_normal = ExtResource("2_x05rq")
+
+[node name="PanelContainer" type="PanelContainer" parent="." unique_id=146547873]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -78.0
+offset_top = -84.0
+offset_right = 78.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxTexture_p683x")
+
+[node name="GridContainer" type="GridContainer" parent="PanelContainer" unique_id=2059371107]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+columns = 4
+
+[node name="Panel" parent="PanelContainer/GridContainer" unique_id=901613427 instance=ExtResource("1_tfkak")]
+layout_mode = 2
+
+[node name="Panel8" parent="PanelContainer/GridContainer" unique_id=948587938 instance=ExtResource("1_tfkak")]
+layout_mode = 2
+
+[node name="Panel6" parent="PanelContainer/GridContainer" unique_id=1816350587 instance=ExtResource("1_tfkak")]
+layout_mode = 2
+
+[node name="Panel7" parent="PanelContainer/GridContainer" unique_id=1451210464 instance=ExtResource("1_tfkak")]
+layout_mode = 2
+
+[node name="Panel4" parent="PanelContainer/GridContainer" unique_id=1996837432 instance=ExtResource("1_tfkak")]
+layout_mode = 2
+
+[node name="Panel5" parent="PanelContainer/GridContainer" unique_id=1312438670 instance=ExtResource("1_tfkak")]
+layout_mode = 2
+
+[node name="Panel2" parent="PanelContainer/GridContainer" unique_id=894271810 instance=ExtResource("1_tfkak")]
+layout_mode = 2
+
+[node name="Panel3" parent="PanelContainer/GridContainer" unique_id=1156991169 instance=ExtResource("1_tfkak")]
+layout_mode = 2
+
+[connection signal="pressed" from="BotonMochila" to="." method="_on_boton_mochila_pressed"]

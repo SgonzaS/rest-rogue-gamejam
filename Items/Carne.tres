@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="Item" format=3 uid="uid://dva0da8pbsxqn"]
+
+[ext_resource type="Texture2D" uid="uid://ra0n6gcak4tj" path="res://Art/props_itens/items nuevo/carne_chica.png" id="1_1l25d"]
+[ext_resource type="Script" uid="uid://2832k1g5f44j" path="res://Items/item.gd" id="1_fhw2e"]
+
+[resource]
+script = ExtResource("1_fhw2e")
+nombre = "Carne"
+icono = ExtResource("1_1l25d")
+cantidad = 10
+metadata/_custom_type_script = "uid://2832k1g5f44j"

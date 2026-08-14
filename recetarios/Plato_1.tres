@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="Receta" format=3 uid="uid://bnde22v2n65y6"]
+
+[ext_resource type="Resource" uid="uid://gfcxxyhgnmpi" path="res://Items/Brocheta.tres" id="2_h6rr2"]
+[ext_resource type="Script" uid="uid://c35yhm4yg30i0" path="res://recetarios/recetario.gd" id="2_w65ro"]
+[ext_resource type="Resource" uid="uid://d0843ng5jfrmh" path="res://Items/Hongo.tres" id="3_jiqkj"]
+
+[resource]
+script = ExtResource("2_w65ro")
+nombre_comida = "Brochetas"
+item_resultado = ExtResource("2_h6rr2")
+ingrediente = ExtResource("3_jiqkj")
+cantidad = 1
+nombre_hechizo = "Curacion"
+cantidad_oro = 100
+metadata/_custom_type_script = "uid://c35yhm4yg30i0"

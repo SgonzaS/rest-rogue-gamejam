@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="Item" format=3 uid="uid://dce3swharjco2"]
+
+[ext_resource type="Script" uid="uid://2832k1g5f44j" path="res://Items/item.gd" id="1_huspn"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_huspn"]
+load_path = "res://.godot/imported/miel.png-b93c7a0b251af52a2b63133d885660c2.ctex"
+
+[resource]
+script = ExtResource("1_huspn")
+nombre = "Miel"
+icono = SubResource("CompressedTexture2D_huspn")
+cantidad = 1
+metadata/_custom_type_script = "uid://2832k1g5f44j"

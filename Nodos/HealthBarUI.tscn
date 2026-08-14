@@ -1,0 +1,33 @@
+[gd_scene format=3 uid="uid://bdh0remrdwy7r"]
+
+[ext_resource type="Texture2D" uid="uid://bhmbhn644ntkh" path="res://Art/ui (new)/barra_vida_roja_ene.png" id="1_uralt"]
+[ext_resource type="Texture2D" uid="uid://ww4wjjvykl4d" path="res://Art/ui (new)/barra_vida_verde_ene.png" id="2_ua81f"]
+
+[node name="Control" type="Control" unique_id=1170841852]
+layout_mode = 3
+anchors_preset = 0
+offset_left = -15.0
+offset_top = 31.0
+offset_right = 25.0
+offset_bottom = 71.0
+
+[node name="Barraroja" type="TextureProgressBar" parent="." unique_id=439357366]
+layout_mode = 0
+offset_left = 5.0
+offset_top = 2.0
+offset_right = 45.0
+offset_bottom = 42.0
+max_value = 120.0
+value = 100.0
+texture_progress = ExtResource("1_uralt")
+tint_progress = Color(0.9254902, 0.10980392, 0.14117648, 1)
+
+[node name="Barraverde" type="TextureProgressBar" parent="." unique_id=1171171839]
+layout_mode = 0
+offset_left = 5.0
+offset_top = 2.0
+offset_right = 45.0
+offset_bottom = 42.0
+max_value = 120.0
+texture_progress = ExtResource("2_ua81f")
+tint_progress = Color(0.13333334, 0.69411767, 0.29803923, 1)

@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://d1860hvtpqeib"]
+
+[ext_resource type="Script" uid="uid://x0ega2ejm0bp" path="res://Inventario/Menu_Cocina/boton_receta.gd" id="1_eo01x"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_eo01x"]
+bg_color = Color(0.11764706, 0.11764706, 0.11764706, 0.7176471)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+
+[node name="BotonReceta" type="Button" unique_id=1872232302]
+offset_right = 27.0
+offset_bottom = 9.0
+theme_override_font_sizes/font_size = 6
+theme_override_styles/normal = SubResource("StyleBoxFlat_eo01x")
+script = ExtResource("1_eo01x")

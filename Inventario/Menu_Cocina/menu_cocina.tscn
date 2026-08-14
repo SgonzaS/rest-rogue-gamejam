@@ -1,0 +1,53 @@
+[gd_scene format=3 uid="uid://bhwd7e3lhorhb"]
+
+[ext_resource type="Script" uid="uid://cyyk8mksdsv14" path="res://Inventario/Menu_Cocina/menu_cocina.gd" id="1_yhawl"]
+[ext_resource type="Script" uid="uid://x0ega2ejm0bp" path="res://Inventario/Menu_Cocina/boton_receta.gd" id="2_sp7wn"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_eo01x"]
+bg_color = Color(0.11764706, 0.11764706, 0.11764706, 0.7176471)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+
+[sub_resource type="PackedScene" id="PackedScene_58drj"]
+_bundled = {
+"conn_count": 0,
+"conns": PackedInt32Array(),
+"editable_instances": [],
+"id_paths": [],
+"names": PackedStringArray("BotonReceta", "Button", "offset_right", "offset_bottom", "theme_override_styles/normal", "script"),
+"node_count": 1,
+"node_ids": PackedInt32Array(1872232302),
+"node_paths": [],
+"nodes": PackedInt32Array(-1, -1, 1, 0, -1, 4, 2, 0, 3, 1, 4, 2, 5, 3, 0),
+"variants": [8.0, 8.0, SubResource("StyleBoxFlat_eo01x"), ExtResource("2_sp7wn")],
+"version": 3
+}
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yhawl"]
+bg_color = Color(0.6284708, 0.632188, 0.6151604, 1)
+
+[node name="MenuCocina" type="CanvasLayer" unique_id=340532094 groups=["Menu"]]
+layer = 3
+visible = false
+script = ExtResource("1_yhawl")
+boton_receta_escena = SubResource("PackedScene_58drj")
+
+[node name="Panel" type="Panel" parent="." unique_id=219722670]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -107.0
+offset_right = 108.0
+offset_bottom = 68.0
+grow_horizontal = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_yhawl")
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Panel" unique_id=410505467]
+layout_mode = 0
+offset_right = 215.0
+offset_bottom = 68.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/ScrollContainer" unique_id=1390121142]
+layout_mode = 2

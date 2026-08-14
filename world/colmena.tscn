@@ -1,0 +1,28 @@
+[gd_scene format=3 uid="uid://cccciks3ebib7"]
+
+[ext_resource type="Script" uid="uid://dhcvd5cl1xv34" path="res://world/colmena.gd" id="1_17mam"]
+[ext_resource type="Texture2D" uid="uid://ctjrl6ucl3w0i" path="res://Art/props_itens/items nuevo/panalcaído.png" id="1_sh3a0"]
+[ext_resource type="PackedScene" uid="uid://dr0peqolbskvj" path="res://interactable.tscn" id="2_17mam"]
+[ext_resource type="Resource" uid="uid://dce3swharjco2" path="res://Items/Miel.tres" id="2_toqf4"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_toqf4"]
+radius = 27.018513
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_4echj"]
+radius = 40.012497
+
+[node name="Colmena" type="Area2D" unique_id=1972281527]
+script = ExtResource("1_17mam")
+item_a_soltar = ExtResource("2_toqf4")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=474601111]
+texture = ExtResource("1_sh3a0")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=538809730]
+shape = SubResource("CircleShape2D_toqf4")
+
+[node name="Interactable" parent="." unique_id=398723352 instance=ExtResource("2_17mam")]
+interaction_name = "Recoger miel"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Interactable" unique_id=646846066]
+shape = SubResource("CircleShape2D_4echj")

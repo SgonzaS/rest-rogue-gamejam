@@ -1,0 +1,100 @@
+[gd_scene format=3 uid="uid://bsg3o1l03wulv"]
+
+[ext_resource type="Script" uid="uid://674dyi606m58" path="res://Nodos/melee_largo.gd" id="1_bvv2y"]
+[ext_resource type="Texture2D" uid="uid://dhoywg8mk45ik" path="res://Art/enemies/enemigos nuevos/PAPA_0001.png" id="1_iariu"]
+[ext_resource type="Texture2D" uid="uid://wqhn4tj28uf8" path="res://Art/enemies/enemigos nuevos/PAPA_0002.png" id="2_bvv2y"]
+[ext_resource type="Script" uid="uid://bnvn63ybcqxd0" path="res://Scripts/Components/Health_component.gd" id="4_ngiej"]
+[ext_resource type="Texture2D" uid="uid://g517r3cemy7v" path="res://Art/props_itens/items nuevo/Papa.png" id="5_7i5jw"]
+[ext_resource type="Script" uid="uid://2832k1g5f44j" path="res://Items/item.gd" id="5_uajej"]
+[ext_resource type="PackedScene" uid="uid://bdh0remrdwy7r" path="res://Nodos/HealthBarUI.tscn" id="7_7i5jw"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_i0vvn"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_iariu")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_bvv2y")
+}],
+"loop": true,
+"name": &"atacar",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_iariu")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_bvv2y")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 3.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_iariu"]
+radius = 15.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_bvv2y"]
+radius = 51.009804
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_i0vvn"]
+size = Vector2(48, 27)
+
+[sub_resource type="Resource" id="Resource_7i5jw"]
+script = ExtResource("5_uajej")
+nombre = "Papa"
+icono = ExtResource("5_7i5jw")
+cantidad = 1
+metadata/_custom_type_script = "uid://2832k1g5f44j"
+
+[node name="melee_largo" type="CharacterBody2D" unique_id=1286453835 groups=["Enemigos"]]
+collision_layer = 15
+collision_mask = 13
+script = ExtResource("1_bvv2y")
+velocidad = 60.0
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1178096752]
+sprite_frames = SubResource("SpriteFrames_i0vvn")
+animation = &"atacar"
+autoplay = "idle"
+frame_progress = 0.08781278
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1047913037]
+position = Vector2(2, 3)
+shape = SubResource("CircleShape2D_iariu")
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="." unique_id=1418417723]
+
+[node name="DPS" type="Timer" parent="." unique_id=729462980]
+
+[node name="TimerPerdida" type="Timer" parent="." unique_id=1363343592]
+
+[node name="area_cono" type="Area2D" parent="." unique_id=703604175]
+position = Vector2(0, 2)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="area_cono" unique_id=2077324552]
+shape = SubResource("CircleShape2D_bvv2y")
+debug_color = Color(0.34873584, 0.5108764, 0.92605895, 0.41960785)
+
+[node name="AreaLatigo" type="Area2D" parent="." unique_id=218632275]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AreaLatigo" unique_id=187215151]
+position = Vector2(-38, 0.5)
+shape = SubResource("RectangleShape2D_i0vvn")
+disabled = true
+debug_color = Color(0.04520932, 0.6341294, 0.4231198, 0.41960785)
+
+[node name="EnemyHealthComponent" type="Node" parent="." unique_id=1970397515]
+script = ExtResource("4_ngiej")
+MAX_HEALTH = 40
+item_a_soltar = SubResource("Resource_7i5jw")
+probabilidad_drop = 100.0
+metadata/_custom_type_script = "uid://bnvn63ybcqxd0"
+
+[node name="Control" parent="." unique_id=1170841852 instance=ExtResource("7_7i5jw")]
+
+[connection signal="timeout" from="TimerPerdida" to="." method="_on_timer_perdida_timeout"]
+[connection signal="body_entered" from="area_cono" to="." method="_on_area_cono_body_entered"]
+[connection signal="body_exited" from="area_cono" to="." method="_on_area_cono_body_exited"]

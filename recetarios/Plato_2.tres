@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="Receta" format=3 uid="uid://dja8o2xy6cruv"]
+
+[ext_resource type="Script" uid="uid://c35yhm4yg30i0" path="res://recetarios/recetario.gd" id="1_75fnf"]
+[ext_resource type="Resource" uid="uid://2082h5gqnebl" path="res://Items/Papa.tres" id="1_up1a0"]
+[ext_resource type="Resource" uid="uid://c7hd37ng8gk66" path="res://Items/Estofado.tres" id="2_kw5af"]
+
+[resource]
+script = ExtResource("1_75fnf")
+nombre_comida = "Estofado"
+item_resultado = ExtResource("2_kw5af")
+ingrediente = ExtResource("1_up1a0")
+cantidad = 2
+nombre_hechizo = "Meteorito"
+cantidad_oro = 50
+metadata/_custom_type_script = "uid://c35yhm4yg30i0"

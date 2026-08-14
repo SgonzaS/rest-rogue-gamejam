@@ -1,0 +1,96 @@
+[gd_scene format=3 uid="uid://bt464p3sauqaw"]
+
+[ext_resource type="Script" uid="uid://bci8ah0o87exc" path="res://Nodos/npc.gd" id="1_u5ns6"]
+[ext_resource type="Script" uid="uid://c35yhm4yg30i0" path="res://recetarios/recetario.gd" id="2_26nb2"]
+[ext_resource type="Resource" uid="uid://d0843ng5jfrmh" path="res://Items/Hongo.tres" id="2_i4wpi"]
+[ext_resource type="Script" uid="uid://tpqco0y6cjxi" path="res://interaction_component/interactable.gd" id="3_1h77a"]
+[ext_resource type="PackedScene" uid="uid://dr0peqolbskvj" path="res://interactable.tscn" id="3_3s8wi"]
+[ext_resource type="Texture2D" uid="uid://cq0kjsd5pn3st" path="res://Art/cliente/CLIENTE_0001.png" id="3_26nb2"]
+[ext_resource type="Texture2D" uid="uid://cc31ulsqv76me" path="res://Art/cliente/CLIENTE_0002.png" id="4_8rb3e"]
+[ext_resource type="Resource" uid="uid://gfcxxyhgnmpi" path="res://Items/Brocheta.tres" id="4_hutdh"]
+[ext_resource type="Resource" uid="uid://2082h5gqnebl" path="res://Items/Papa.tres" id="5_87blg"]
+[ext_resource type="Resource" uid="uid://c7hd37ng8gk66" path="res://Items/Estofado.tres" id="6_1kedi"]
+
+[sub_resource type="Resource" id="Resource_l8cgf"]
+script = ExtResource("2_26nb2")
+nombre_comida = "Brochetas"
+item_resultado = ExtResource("4_hutdh")
+ingrediente = ExtResource("2_i4wpi")
+cantidad = 1
+nombre_hechizo = "Curacion"
+cantidad_oro = 100
+metadata/_custom_type_script = "uid://c35yhm4yg30i0"
+
+[sub_resource type="Resource" id="Resource_cbn3q"]
+script = ExtResource("2_26nb2")
+nombre_comida = "Estofado"
+item_resultado = ExtResource("6_1kedi")
+ingrediente = ExtResource("5_87blg")
+cantidad = 2
+nombre_hechizo = "Meteorito"
+cantidad_oro = 50
+metadata/_custom_type_script = "uid://c35yhm4yg30i0"
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_jb8dt"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_26nb2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_8rb3e")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_odi4f"]
+radius = 9.0
+height = 32.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_u5ns6"]
+radius = 30.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_1h77a"]
+radius = 28.01785
+
+[node name="NPC" type="CharacterBody2D" unique_id=287722467 groups=["NPCs"]]
+script = ExtResource("1_u5ns6")
+ofertas = Array[ExtResource("2_26nb2")]([SubResource("Resource_l8cgf"), SubResource("Resource_cbn3q")])
+speed = 100.0
+cantidad_oro = 50
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=747631950]
+position = Vector2(0, -8)
+sprite_frames = SubResource("SpriteFrames_jb8dt")
+animation = &"idle"
+frame_progress = 0.7075607
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=701403285]
+shape = SubResource("CapsuleShape2D_odi4f")
+debug_color = Color(0.84377646, 0.16877478, 0.43243533, 0.41960785)
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="." unique_id=151268349]
+avoidance_enabled = true
+
+[node name="Chatdetectionarea" type="Area2D" parent="." unique_id=2074514659]
+collision_layer = 8
+script = ExtResource("3_1h77a")
+interaction_name = "Hablar con cliente (E)"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Chatdetectionarea" unique_id=433207320]
+position = Vector2(0, -3)
+shape = SubResource("CircleShape2D_u5ns6")
+
+[node name="Interactable" parent="Chatdetectionarea" unique_id=398723352 instance=ExtResource("3_3s8wi")]
+interaction_name = "Hablar con cliente (E)"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Chatdetectionarea/Interactable" unique_id=1795712504]
+position = Vector2(0, -3)
+shape = SubResource("CircleShape2D_1h77a")
+debug_color = Color(0.85826814, 0.22106078, 0.72093153, 0.41960785)
+
+[connection signal="velocity_computed" from="NavigationAgent2D" to="." method="_on_navigation_agent_2d_velocity_computed"]
+[connection signal="body_entered" from="Chatdetectionarea" to="." method="_on_chatdetectionarea_body_entered"]
+[connection signal="body_exited" from="Chatdetectionarea" to="." method="_on_chatdetectionarea_body_exited"]

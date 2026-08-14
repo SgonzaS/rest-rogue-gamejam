@@ -1,0 +1,43 @@
+[gd_scene format=3 uid="uid://b2uhtarm5xsb6"]
+
+[ext_resource type="Texture2D" uid="uid://dllc2k1pg5bl6" path="res://Art/FireBalls/5/1.png" id="1_vtkto"]
+[ext_resource type="Texture2D" uid="uid://bpnuuhq8qp7lj" path="res://Art/FireBalls/5/2.png" id="2_enfws"]
+[ext_resource type="Texture2D" uid="uid://nno4l61gkj65" path="res://Art/FireBalls/5/3.png" id="3_ywesa"]
+[ext_resource type="Texture2D" uid="uid://dpt5wu2ic00fk" path="res://Art/FireBalls/5/4.png" id="4_x4l2l"]
+[ext_resource type="Texture2D" uid="uid://bh877r38umx75" path="res://Art/FireBalls/5/5.png" id="5_03gop"]
+[ext_resource type="Texture2D" uid="uid://bco47448whefm" path="res://Art/FireBalls/5/6.png" id="6_2wj7o"]
+[ext_resource type="Script" uid="uid://bgt5kv032rvu6" path="res://Scripts/Components/hechizo_curacion.gd" id="7_3eeyn"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_foywv"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_vtkto")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_enfws")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_ywesa")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_x4l2l")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_03gop")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_2wj7o")
+}],
+"loop": true,
+"name": &"default",
+"speed": 20.0
+}]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" unique_id=952985249]
+sprite_frames = SubResource("SpriteFrames_foywv")
+frame_progress = 0.9071947
+script = ExtResource("7_3eeyn")
+
+[node name="CooldawnCuracion" type="Timer" parent="." unique_id=1545006774]
+wait_time = 5.0

@@ -1,0 +1,276 @@
+[gd_scene format=3 uid="uid://bq6gn3ml2fcd5"]
+
+[ext_resource type="Script" uid="uid://c7ckcxa1g8dft" path="res://Scripts/State/state_machine.gd" id="1_bgf3y"]
+[ext_resource type="Script" uid="uid://cyvfpb5v2isxj" path="res://Nodos/player.gd" id="1_cm7qm"]
+[ext_resource type="Script" uid="uid://csmjwu20kr15c" path="res://Nodos/Player_idle.gd" id="2_6cq5m"]
+[ext_resource type="Texture2D" uid="uid://dcr7wtfp7o3hp" path="res://Art/heroes/Bruja/bruja frente_0001.png" id="2_ap6vb"]
+[ext_resource type="Script" uid="uid://6sib0cmna2rh" path="res://Scripts/Components/velocity_component.gd" id="3_dm8yi"]
+[ext_resource type="Texture2D" uid="uid://dm58uqikr2yor" path="res://Art/heroes/Bruja/bruja frente_0002.png" id="3_fki32"]
+[ext_resource type="Script" uid="uid://dvgf44dklf4hq" path="res://Nodos/Player_walk.gd" id="3_gmivs"]
+[ext_resource type="Script" uid="uid://cp7ry0jfibkd2" path="res://Nodos/Player_moveattack.gd" id="4_77fpn"]
+[ext_resource type="Script" uid="uid://d1w8q8dpohdh7" path="res://input_component.gd" id="4_bgf3y"]
+[ext_resource type="Texture2D" uid="uid://cebvepeegtqsd" path="res://Art/heroes/Bruja/bruja frente_0003.png" id="4_xktqv"]
+[ext_resource type="Texture2D" uid="uid://nrd5ydad1b33" path="res://Art/heroes/Bruja/bruja frente_0004.png" id="5_2b5q2"]
+[ext_resource type="Script" uid="uid://8ddd6lvwxkl2" path="res://Nodos/Player_idleattack.gd" id="5_nn8ra"]
+[ext_resource type="Script" uid="uid://b03ydrko8knoc" path="res://Nodos/player_muerte.gd" id="6_cu1b4"]
+[ext_resource type="Script" uid="uid://bnvn63ybcqxd0" path="res://Scripts/Components/Health_component.gd" id="6_ho264"]
+[ext_resource type="Texture2D" uid="uid://220wgay4tveh" path="res://Art/effects (new)/explosion_anim_f2.png" id="9_cm7qm"]
+[ext_resource type="Script" uid="uid://byoagcu0feqnb" path="res://Nodos/p_layer_colision.gd" id="11_cu1b4"]
+[ext_resource type="PackedScene" uid="uid://bug3m3aqou4yb" path="res://Inventario/ui_inventario/ui_inventario.tscn" id="16_fgf5h"]
+[ext_resource type="PackedScene" uid="uid://coohhuav6el2v" path="res://interaction_component.tscn" id="17_cbn54"]
+[ext_resource type="Script" uid="uid://bknobidbfrhkj" path="res://menu_muerte.gd" id="18_c0jwy"]
+[ext_resource type="PackedScene" uid="uid://bhwd7e3lhorhb" path="res://Inventario/Menu_Cocina/menu_cocina.tscn" id="18_gjlvu"]
+[ext_resource type="Texture2D" uid="uid://cy73u6i0lptd1" path="res://Art/props_itens/bag_coins.png" id="21_fki32"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fgf5h"]
+atlas = ExtResource("9_cm7qm")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_t2owb"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_ap6vb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_fki32")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_xktqv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_2b5q2")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 4.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fgf5h")
+}],
+"loop": false,
+"name": &"muerte",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_ap6vb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_fki32")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_xktqv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_2b5q2")
+}],
+"loop": true,
+"name": &"run",
+"speed": 8.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ukeof"]
+radius = 6.6666665
+height = 18.333332
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_nn8ra"]
+radius = 16.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ahtoq"]
+size = Vector2(21.75, 16.25)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_cbn54"]
+load_path = "res://.godot/imported/Barra de vida.png-b66ab3e96906a5a35985d056866575e3.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_gjlvu"]
+load_path = "res://.godot/imported/Barra_roja_vida.png-b7e703698a5896bce13687fd3d5a7c59.ctex"
+
+[node name="Player" type="CharacterBody2D" unique_id=1923705652 groups=["Player", "juego"]]
+collision_layer = 3
+collision_mask = 3
+script = ExtResource("1_cm7qm")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=399371521]
+position = Vector2(0, -8)
+sprite_frames = SubResource("SpriteFrames_t2owb")
+animation = &"idle"
+autoplay = "idle"
+offset = Vector2(0, -23)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1969759670]
+position = Vector2(0, -15)
+scale = Vector2(1.2, 1.2)
+shape = SubResource("CapsuleShape2D_ukeof")
+
+[node name="PLayer_colision" type="Area2D" parent="." unique_id=1493972677 node_paths=PackedStringArray("health_component")]
+collision_mask = 15
+script = ExtResource("11_cu1b4")
+health_component = NodePath("../HealthComponent")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PLayer_colision" unique_id=449411619]
+light_mask = 15
+visibility_layer = 15
+position = Vector2(0, -15)
+shape = SubResource("CircleShape2D_nn8ra")
+
+[node name="InteractionComponent" parent="." unique_id=1147334996 instance=ExtResource("17_cbn54")]
+position = Vector2(0, -15)
+
+[node name="State_Machine" type="Node" parent="." unique_id=2053952529 node_paths=PackedStringArray("inital_state", "animation_player", "target")]
+script = ExtResource("1_bgf3y")
+inital_state = NodePath("Idle")
+animation_player = NodePath("../AnimatedSprite2D")
+target = NodePath("..")
+
+[node name="Idle" type="Node" parent="State_Machine" unique_id=1142087576]
+script = ExtResource("2_6cq5m")
+
+[node name="Walk" type="Node" parent="State_Machine" unique_id=259138800]
+script = ExtResource("3_gmivs")
+
+[node name="Move_attack" type="Node" parent="State_Machine" unique_id=1114626514]
+script = ExtResource("4_77fpn")
+
+[node name="Idle_attack" type="Node" parent="State_Machine" unique_id=58282861]
+script = ExtResource("5_nn8ra")
+
+[node name="Player_muerte" type="Node" parent="State_Machine" unique_id=200988509]
+script = ExtResource("6_cu1b4")
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=381746237]
+
+[node name="hechizospawn" type="Node2D" parent="." unique_id=1706071731]
+position = Vector2(-15, -20)
+
+[node name="HealthComponent" type="Node" parent="." unique_id=388427660 groups=["Player"]]
+script = ExtResource("6_ho264")
+MAX_HEALTH = 100
+metadata/_custom_type_script = "uid://bnvn63ybcqxd0"
+
+[node name="Velocity_Component" type="Node" parent="." unique_id=814988681]
+script = ExtResource("3_dm8yi")
+speed = 100
+
+[node name="Input_Component" type="Node" parent="." unique_id=1070279426]
+script = ExtResource("4_bgf3y")
+
+[node name="attack_cooldown" type="Timer" parent="." unique_id=1511429445]
+wait_time = 2.0
+
+[node name="deal_attack_timer" type="Timer" parent="." unique_id=854695528]
+
+[node name="Pivote_arma" type="Marker2D" parent="." unique_id=1021156964]
+
+[node name="weapon_colision" type="Area2D" parent="Pivote_arma" unique_id=1218760891]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Pivote_arma/weapon_colision" unique_id=1910882200 groups=["juego"]]
+light_mask = 2
+visibility_layer = 2
+position = Vector2(16, -8)
+shape = SubResource("RectangleShape2D_ahtoq")
+disabled = true
+debug_color = Color(0.83871263, 0, 0.14532843, 0.41960785)
+
+[node name="inventario" type="CanvasLayer" parent="." unique_id=7040022]
+
+[node name="Control" parent="inventario" unique_id=1513825622 instance=ExtResource("16_fgf5h")]
+
+[node name="MenuCocina" parent="inventario" unique_id=537032461 instance=ExtResource("18_gjlvu")]
+
+[node name="TextureRect" type="TextureRect" parent="inventario" unique_id=675529681]
+offset_right = 20.0
+offset_bottom = 20.0
+texture = SubResource("CompressedTexture2D_cbn54")
+
+[node name="HealthBar" type="TextureProgressBar" parent="inventario" unique_id=1874951995]
+offset_right = 187.0
+offset_bottom = 30.0
+value = 100.0
+nine_patch_stretch = true
+stretch_margin_left = 2
+stretch_margin_top = 2
+stretch_margin_right = 2
+stretch_margin_bottom = 2
+texture_progress = SubResource("CompressedTexture2D_gjlvu")
+
+[node name="MenuMuerte" type="Panel" parent="inventario" unique_id=1897221526]
+process_mode = 3
+visible = false
+offset_left = 123.0
+offset_top = 42.0
+offset_right = 358.0
+offset_bottom = 223.0
+script = ExtResource("18_c0jwy")
+
+[node name="ColorRect" type="ColorRect" parent="inventario/MenuMuerte" unique_id=1535588103]
+process_mode = 3
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.8666667)
+
+[node name="PanelContainer" type="PanelContainer" parent="inventario/MenuMuerte" unique_id=2057009993]
+process_mode = 3
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -105.5
+offset_top = -81.5
+offset_right = 107.5
+offset_bottom = 81.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="inventario/MenuMuerte/PanelContainer" unique_id=670737124]
+layout_mode = 2
+theme_override_constants/separation = 12
+alignment = 1
+
+[node name="Label" type="Label" parent="inventario/MenuMuerte/PanelContainer/VBoxContainer" unique_id=1867062516]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+text = "¡HAS MUERTO!
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Reiniciar" type="Button" parent="inventario/MenuMuerte/PanelContainer/VBoxContainer" unique_id=1444653063]
+process_mode = 3
+layout_mode = 2
+text = "Reiniciar"
+
+[node name="Menu_Principal" type="Button" parent="inventario/MenuMuerte/PanelContainer/VBoxContainer" unique_id=963626457]
+process_mode = 3
+layout_mode = 2
+text = "Menú Principal"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="inventario" unique_id=1774270005]
+offset_left = 8.0
+offset_top = 30.0
+offset_right = 64.73913
+offset_bottom = 59.0
+
+[node name="TextureRect" type="TextureRect" parent="inventario/HBoxContainer" unique_id=1580474186]
+layout_mode = 2
+texture = ExtResource("21_fki32")
+
+[node name="Orolabel" type="Label" parent="inventario/HBoxContainer" unique_id=641059811]
+layout_mode = 2
+text = "0"
+
+[connection signal="body_entered" from="PLayer_colision" to="PLayer_colision" method="_on_body_entered"]
+[connection signal="body_exited" from="PLayer_colision" to="PLayer_colision" method="_on_body_exited"]
+[connection signal="timeout" from="attack_cooldown" to="PLayer_colision" method="_on_attack_cooldown_timeout"]
+[connection signal="timeout" from="deal_attack_timer" to="State_Machine/Walk" method="_on_deal_attack_timer_timeout"]
+[connection signal="body_entered" from="Pivote_arma/weapon_colision" to="PLayer_colision" method="_on_weapon_colision_body_entered"]
+[connection signal="pressed" from="inventario/MenuMuerte/PanelContainer/VBoxContainer/Reiniciar" to="inventario/MenuMuerte" method="_on_reiniciar_pressed"]
+[connection signal="pressed" from="inventario/MenuMuerte/PanelContainer/VBoxContainer/Menu_Principal" to="inventario/MenuMuerte" method="_on_menu_principal_pressed"]

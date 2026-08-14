@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="Item" format=3 uid="uid://d0843ng5jfrmh"]
+
+[ext_resource type="Texture2D" uid="uid://cj054cnnffm47" path="res://Art/props_itens/items nuevo/hongoingrediente.png" id="1_qobj7"]
+[ext_resource type="Script" uid="uid://2832k1g5f44j" path="res://Items/item.gd" id="1_ymbob"]
+
+[resource]
+script = ExtResource("1_ymbob")
+nombre = "Hongo"
+icono = ExtResource("1_qobj7")
+cantidad = 10
+metadata/_custom_type_script = "uid://2832k1g5f44j"

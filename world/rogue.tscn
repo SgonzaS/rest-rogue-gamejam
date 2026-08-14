@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://cb6a4twv4d8qw"]
+
+[ext_resource type="PackedScene" uid="uid://bq8bockkoo7pr" path="res://game.tscn" id="1_rcl0j"]
+
+[node name="Rogue" type="Node2D" unique_id=338658698]
+
+[node name="Game" parent="." unique_id=1664974854 instance=ExtResource("1_rcl0j")]

@@ -1,0 +1,48 @@
+[gd_scene format=3 uid="uid://bq6gn3ml2fcd5"]
+
+[ext_resource type="Script" uid="uid://c7ckcxa1g8dft" path="res://Scripts/State/state_machine.gd" id="1_bgf3y"]
+[ext_resource type="Script" uid="uid://csmjwu20kr15c" path="res://Nodos/Player_idle.gd" id="2_6cq5m"]
+[ext_resource type="Texture2D" uid="uid://dqcbx3pjc5612" path="res://Art/Players/Dwarf/dwarf x2.png" id="2_dm8yi"]
+[ext_resource type="Script" uid="uid://6sib0cmna2rh" path="res://Scripts/Components/velocity_component.gd" id="3_dm8yi"]
+[ext_resource type="Script" uid="uid://dvgf44dklf4hq" path="res://Nodos/Player_walk.gd" id="3_gmivs"]
+[ext_resource type="Script" uid="uid://cp7ry0jfibkd2" path="res://Nodos/Player_moveattack.gd" id="4_77fpn"]
+[ext_resource type="Script" uid="uid://d1w8q8dpohdh7" path="res://input_component.gd" id="4_bgf3y"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_onrkg"]
+
+[node name="Player" type="CharacterBody2D" unique_id=1923705652]
+
+[node name="State_Machine" type="Node" parent="." unique_id=2053952529 node_paths=PackedStringArray("inital_state", "animation_player", "target")]
+script = ExtResource("1_bgf3y")
+inital_state = NodePath("Idle")
+animation_player = NodePath("../AnimationPlayer")
+target = NodePath("..")
+
+[node name="Idle" type="Node" parent="State_Machine" unique_id=1142087576]
+script = ExtResource("2_6cq5m")
+
+[node name="Walk" type="Node" parent="State_Machine" unique_id=259138800]
+script = ExtResource("3_gmivs")
+
+[node name="Move_attack" type="Node" parent="State_Machine" unique_id=1114626514]
+script = ExtResource("4_77fpn")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1969759670]
+position = Vector2(0, -16)
+scale = Vector2(1.2, 1.2)
+shape = SubResource("CapsuleShape2D_onrkg")
+
+[node name="Spray" type="Sprite2D" parent="." unique_id=1756887645]
+position = Vector2(0, -27)
+texture = ExtResource("2_dm8yi")
+hframes = 5
+vframes = 8
+
+[node name="Velocity_Component" type="Node" parent="." unique_id=814988681]
+script = ExtResource("3_dm8yi")
+speed = 100
+
+[node name="Input_Component" type="Node" parent="." unique_id=1070279426]
+script = ExtResource("4_bgf3y")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=242378788]

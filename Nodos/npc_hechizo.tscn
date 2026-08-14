@@ -1,0 +1,119 @@
+[gd_scene format=3 uid="uid://brwqs3uynukh0"]
+
+[ext_resource type="Script" uid="uid://bci8ah0o87exc" path="res://Nodos/npc.gd" id="1_akk73"]
+[ext_resource type="Texture2D" uid="uid://bm86flwparqxe" path="res://Art/enemies/flying creature/fly_anim_spritesheet.png" id="2_akk73"]
+[ext_resource type="Script" uid="uid://c35yhm4yg30i0" path="res://recetarios/recetario.gd" id="2_slgcd"]
+[ext_resource type="Resource" uid="uid://gfcxxyhgnmpi" path="res://Items/Brocheta.tres" id="2_y6uxp"]
+[ext_resource type="PackedScene" uid="uid://dr0peqolbskvj" path="res://interactable.tscn" id="3_h8lsf"]
+[ext_resource type="Script" uid="uid://tpqco0y6cjxi" path="res://interaction_component/interactable.gd" id="3_ne1ja"]
+[ext_resource type="Resource" uid="uid://d0843ng5jfrmh" path="res://Items/Hongo.tres" id="3_slgcd"]
+[ext_resource type="Resource" uid="uid://2082h5gqnebl" path="res://Items/Papa.tres" id="4_gbjo6"]
+[ext_resource type="Resource" uid="uid://c7hd37ng8gk66" path="res://Items/Estofado.tres" id="5_n8es1"]
+
+[sub_resource type="Resource" id="Resource_k85bd"]
+script = ExtResource("2_slgcd")
+nombre_comida = "Brochetas"
+item_resultado = ExtResource("2_y6uxp")
+ingrediente = ExtResource("3_slgcd")
+cantidad = 1
+nombre_hechizo = "Curacion"
+cantidad_oro = 100
+metadata/_custom_type_script = "uid://c35yhm4yg30i0"
+
+[sub_resource type="Resource" id="Resource_gbjo6"]
+script = ExtResource("2_slgcd")
+nombre_comida = "Estofado"
+item_resultado = ExtResource("5_n8es1")
+ingrediente = ExtResource("4_gbjo6")
+cantidad = 2
+nombre_hechizo = "Meteorito"
+cantidad_oro = 50
+metadata/_custom_type_script = "uid://c35yhm4yg30i0"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h8lsf"]
+atlas = ExtResource("2_akk73")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ne1ja"]
+atlas = ExtResource("2_akk73")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bsrro"]
+atlas = ExtResource("2_akk73")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y6uxp"]
+atlas = ExtResource("2_akk73")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_5m3h4"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h8lsf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ne1ja")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bsrro")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y6uxp")
+}],
+"loop": true,
+"name": &"caminar",
+"speed": 6.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_qhges"]
+radius = 6.0
+height = 16.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_akk73"]
+radius = 13.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ne1ja"]
+radius = 13.038404
+
+[node name="NPC" type="CharacterBody2D" unique_id=287722467 groups=["NPCs"]]
+script = ExtResource("1_akk73")
+tipo_npc = 1
+ofertas = Array[ExtResource("2_slgcd")]([SubResource("Resource_k85bd"), SubResource("Resource_gbjo6")])
+speed = 100.0
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=747631950]
+position = Vector2(0, -8)
+sprite_frames = SubResource("SpriteFrames_5m3h4")
+animation = &"caminar"
+autoplay = "caminar"
+frame_progress = 0.32245868
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=701403285]
+position = Vector2(0, -8)
+shape = SubResource("CapsuleShape2D_qhges")
+debug_color = Color(0.6095177, 0.26071775, 0.93660796, 0.41960785)
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="." unique_id=1530475037]
+avoidance_enabled = true
+
+[node name="Chatdetectionarea" type="Area2D" parent="." unique_id=1922181420]
+collision_layer = 8
+script = ExtResource("3_ne1ja")
+interaction_name = "Hablar con Sabio(E)"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Chatdetectionarea" unique_id=2140660170]
+position = Vector2(0, -8)
+shape = SubResource("CircleShape2D_akk73")
+
+[node name="Interactable" parent="Chatdetectionarea" unique_id=398723352 instance=ExtResource("3_h8lsf")]
+interaction_name = "Hablar con Sabio(E)"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Chatdetectionarea/Interactable" unique_id=1986243000]
+position = Vector2(0, -8)
+shape = SubResource("CircleShape2D_ne1ja")
+debug_color = Color(0.85826814, 0.22106078, 0.72093153, 0.41960785)
+
+[connection signal="velocity_computed" from="NavigationAgent2D" to="." method="_on_navigation_agent_2d_velocity_computed"]
+[connection signal="body_entered" from="Chatdetectionarea" to="." method="_on_chatdetectionarea_body_entered"]
+[connection signal="body_exited" from="Chatdetectionarea" to="." method="_on_chatdetectionarea_body_exited"]

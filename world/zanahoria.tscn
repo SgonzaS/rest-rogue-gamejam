@@ -1,0 +1,39 @@
+[gd_scene format=3 uid="uid://151khj7olaxf"]
+
+[ext_resource type="Script" uid="uid://d2l761tcfk1pe" path="res://world/zanahoria.gd" id="1_27rkg"]
+[ext_resource type="Texture2D" uid="uid://brmee55tvjnfm" path="res://Art/props_itens/items nuevo/plantazanahoria.png" id="1_wdgjl"]
+[ext_resource type="PackedScene" uid="uid://dr0peqolbskvj" path="res://interactable.tscn" id="2_27rkg"]
+[ext_resource type="Script" uid="uid://2832k1g5f44j" path="res://Items/item.gd" id="2_olwhb"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_ouip2"]
+load_path = "res://.godot/imported/zanahoria.png-96360d2149b90dd504bb68aed80bf639.ctex"
+
+[sub_resource type="Resource" id="Resource_2opan"]
+script = ExtResource("2_olwhb")
+nombre = "Zanahoria"
+icono = SubResource("CompressedTexture2D_ouip2")
+cantidad = 1
+metadata/_custom_type_script = "uid://2832k1g5f44j"
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_olwhb"]
+radius = 26.019224
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_2opan"]
+radius = 35.22783
+
+[node name="Zanahoria" type="Area2D" unique_id=1633624847]
+script = ExtResource("1_27rkg")
+item_a_soltar = SubResource("Resource_2opan")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1644579444]
+texture = ExtResource("1_wdgjl")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=829991759]
+shape = SubResource("CircleShape2D_olwhb")
+
+[node name="Interactable" parent="." unique_id=398723352 instance=ExtResource("2_27rkg")]
+interaction_name = "Recoger zanahorias"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Interactable" unique_id=88560712]
+shape = SubResource("CircleShape2D_2opan")
+debug_color = Color(0, 0.6378022, 0.39142686, 0.41960785)

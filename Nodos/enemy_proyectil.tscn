@@ -1,0 +1,33 @@
+[gd_scene format=3 uid="uid://ccrpp1iaydc5l"]
+
+[ext_resource type="Script" uid="uid://ca2jbv3ckcva8" path="res://Nodos/enemy_proyectil.gd" id="1_084ir"]
+[ext_resource type="Texture2D" uid="uid://cj054cnnffm47" path="res://Art/props_itens/items nuevo/hongoingrediente.png" id="2_084ir"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_084ir"]
+radius = 12.0
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_p61bq"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_084ir")
+}],
+"loop": true,
+"name": &"default",
+"speed": 4.0
+}]
+
+[node name="enemy_proyectil" type="Area2D" unique_id=1074178651]
+collision_layer = 10
+collision_mask = 13
+script = ExtResource("1_084ir")
+velocidad = 200.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=671704397]
+shape = SubResource("CircleShape2D_084ir")
+
+[node name="Sprite2D" type="AnimatedSprite2D" parent="." unique_id=744938386]
+sprite_frames = SubResource("SpriteFrames_p61bq")
+frame_progress = 0.51347834
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

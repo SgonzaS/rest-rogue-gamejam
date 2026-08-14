@@ -1,0 +1,84 @@
+[gd_scene format=3 uid="uid://cvwpd6qshqkf7"]
+
+[ext_resource type="Script" uid="uid://bnjdgmmc2luai" path="res://Nodos/range_enemy.gd" id="1_2p2t8"]
+[ext_resource type="Script" uid="uid://bnvn63ybcqxd0" path="res://Scripts/Components/Health_component.gd" id="2_2p2t8"]
+[ext_resource type="PackedScene" uid="uid://ccrpp1iaydc5l" path="res://Nodos/enemy_proyectil.tscn" id="2_8w4oh"]
+[ext_resource type="Texture2D" uid="uid://rx1bvrwk4wnc" path="res://Art/enemies/enemigos nuevos/hongo_0001.png" id="3_p70ee"]
+[ext_resource type="Texture2D" uid="uid://chwnhrrvwgfi8" path="res://Art/enemies/enemigos nuevos/hongo_0002.png" id="4_cv65b"]
+[ext_resource type="Script" uid="uid://2832k1g5f44j" path="res://Items/item.gd" id="4_p70ee"]
+[ext_resource type="PackedScene" uid="uid://bdh0remrdwy7r" path="res://Nodos/HealthBarUI.tscn" id="7_cv65b"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_btci4"]
+radius = 11.0
+height = 42.0
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_4xktk"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_p70ee")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_cv65b")
+}],
+"loop": true,
+"name": &"run",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_8w4oh"]
+radius = 136.0
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_p70ee"]
+load_path = "res://.godot/imported/hongoingrediente.png-675a1e31f3e55e546c1767c14e77bea8.ctex"
+
+[sub_resource type="Resource" id="Resource_cv65b"]
+script = ExtResource("4_p70ee")
+nombre = "Hongo"
+icono = SubResource("CompressedTexture2D_p70ee")
+cantidad = 1
+metadata/_custom_type_script = "uid://2832k1g5f44j"
+
+[node name="RangeEnemy" type="CharacterBody2D" unique_id=1700610118 groups=["Enemigos"]]
+collision_layer = 13
+collision_mask = 13
+script = ExtResource("1_2p2t8")
+velocidad = 40.0
+velocidad_persecucion = 80.0
+proyectil_escena = ExtResource("2_8w4oh")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1986564143]
+shape = SubResource("CapsuleShape2D_btci4")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=989482485]
+sprite_frames = SubResource("SpriteFrames_4xktk")
+animation = &"run"
+autoplay = "run"
+frame_progress = 0.8538199
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="." unique_id=1043409468]
+
+[node name="area_cono" type="Area2D" parent="." unique_id=263757692]
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="area_cono" unique_id=1944139508]
+shape = SubResource("CircleShape2D_8w4oh")
+
+[node name="DPS" type="Timer" parent="." unique_id=83637173]
+
+[node name="EnemyHealthComponent" type="Node" parent="." unique_id=439310131]
+script = ExtResource("2_2p2t8")
+MAX_HEALTH = 40
+item_a_soltar = SubResource("Resource_cv65b")
+probabilidad_drop = 100.0
+metadata/_custom_type_script = "uid://bnvn63ybcqxd0"
+
+[node name="TimerPerdida" type="Timer" parent="." unique_id=18910514]
+wait_time = 2.0
+one_shot = true
+
+[node name="Control" parent="." unique_id=1170841852 instance=ExtResource("7_cv65b")]
+
+[connection signal="body_entered" from="area_cono" to="." method="_on_area_cono_body_entered"]
+[connection signal="body_exited" from="area_cono" to="." method="_on_area_cono_body_exited"]
+[connection signal="timeout" from="TimerPerdida" to="." method="_on_timer_perdida_timeout"]

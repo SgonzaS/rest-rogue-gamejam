@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="Item" format=3 uid="uid://gfcxxyhgnmpi"]
+
+[ext_resource type="Script" uid="uid://2832k1g5f44j" path="res://Items/item.gd" id="1_bygjo"]
+[ext_resource type="Texture2D" uid="uid://cl4weaejx7qd3" path="res://Art/props_itens/items nuevo/brocheta.png" id="1_owhi6"]
+
+[resource]
+script = ExtResource("1_bygjo")
+nombre = "Brochetas"
+icono = ExtResource("1_owhi6")
+cantidad = 1
+metadata/_custom_type_script = "uid://2832k1g5f44j"

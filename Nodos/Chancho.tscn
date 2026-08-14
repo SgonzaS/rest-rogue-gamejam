@@ -1,0 +1,89 @@
+[gd_scene format=3 uid="uid://br185fhnsu86b"]
+
+[ext_resource type="Script" uid="uid://3lao2xu21h48" path="res://Nodos/enemy.gd" id="1_4tk5q"]
+[ext_resource type="Texture2D" uid="uid://r5msabg6ygts" path="res://Art/enemies/enemigos nuevos/chancho_0001.png" id="4_c5lg8"]
+[ext_resource type="Texture2D" uid="uid://dftta8pe6w3o8" path="res://Art/enemies/enemigos nuevos/chancho_0002.png" id="5_3287v"]
+[ext_resource type="Resource" uid="uid://dva0da8pbsxqn" path="res://Items/Carne.tres" id="5_n1py6"]
+[ext_resource type="PackedScene" uid="uid://bdh0remrdwy7r" path="res://Nodos/HealthBarUI.tscn" id="6_4tk5q"]
+[ext_resource type="Script" uid="uid://bnvn63ybcqxd0" path="res://Scripts/Components/Health_component.gd" id="6_p7lrp"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_5mc8v"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_c5lg8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_3287v")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 6.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8lgl6"]
+size = Vector2(28, 59)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_7ddwl"]
+radius = 32.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_4tk5q"]
+radius = 135.05925
+
+[node name="Enemy1" type="CharacterBody2D" unique_id=1803888204 groups=["Enemigos", "juego"]]
+collision_layer = 13
+collision_mask = 13
+motion_mode = 1
+wall_min_slide_angle = 0.0
+script = ExtResource("1_4tk5q")
+speed = 75.0
+rango_ataque = null
+tiempo_ataque = null
+
+[node name="chanchoSprite" type="AnimatedSprite2D" parent="." unique_id=1152913010]
+sprite_frames = SubResource("SpriteFrames_5mc8v")
+animation = &"idle"
+autoplay = "idle"
+frame_progress = 0.8685216
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2075560583]
+position = Vector2(4, 1.5)
+shape = SubResource("RectangleShape2D_8lgl6")
+
+[node name="Timer" type="Timer" parent="." unique_id=981371236]
+wait_time = 0.5
+autostart = true
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="." unique_id=54972646]
+path_desired_distance = 15.0
+
+[node name="enemy_hitbox" type="Area2D" parent="." unique_id=1206344356]
+collision_layer = 6
+collision_mask = 7
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="enemy_hitbox" unique_id=235616256]
+light_mask = 5
+visibility_layer = 5
+position = Vector2(4, -1)
+shape = SubResource("CircleShape2D_7ddwl")
+debug_color = Color(0.7649987, 0.29869342, 0.8390109, 0.41960785)
+
+[node name="EnemyHealthComponent" type="Node" parent="." unique_id=783560033]
+script = ExtResource("6_p7lrp")
+MAX_HEALTH = 120
+item_a_soltar = ExtResource("5_n1py6")
+probabilidad_drop = 100.0
+metadata/_custom_type_script = "uid://bnvn63ybcqxd0"
+
+[node name="Control" parent="." unique_id=1170841852 instance=ExtResource("6_4tk5q")]
+
+[node name="detection_area" type="Area2D" parent="." unique_id=157246798]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="detection_area" unique_id=1245908651]
+shape = SubResource("CircleShape2D_4tk5q")
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="body_entered" from="enemy_hitbox" to="." method="_on_enemy_hitbox_body_entered"]
+[connection signal="body_exited" from="enemy_hitbox" to="." method="_on_enemy_hitbox_body_exited"]
+[connection signal="body_entered" from="detection_area" to="." method="_on_detection_area_body_entered"]
+[connection signal="body_exited" from="detection_area" to="." method="_on_detection_area_body_exited"]

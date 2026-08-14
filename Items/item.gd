@@ -1,0 +1,10 @@
+extends Resource
+
+class_name Item
+
+
+@export var nombre: String
+@export var icono: Texture2D
+@export var apilable: bool = true
+@export var cantidad: int
+@export var max_cantidad: int = 99

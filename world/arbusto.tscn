@@ -1,0 +1,31 @@
+[gd_scene format=3 uid="uid://dh3ikyjbqej66"]
+
+[ext_resource type="Script" uid="uid://bxcf12utxaov" path="res://world/arbusto.gd" id="1_6dq41"]
+[ext_resource type="Texture2D" uid="uid://bk3pm075xup4r" path="res://Art/props_itens/items nuevo/arbustobayas.png" id="1_u5d1g"]
+[ext_resource type="PackedScene" uid="uid://dr0peqolbskvj" path="res://interactable.tscn" id="2_4trcd"]
+[ext_resource type="Resource" uid="uid://dmal1eprx41u0" path="res://Items/Bayas.tres" id="2_x1kui"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_4trcd"]
+radius = 21.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_6dq41"]
+radius = 21.0
+
+[node name="arbusto" type="Area2D" unique_id=576347287]
+script = ExtResource("1_6dq41")
+item_a_soltar = ExtResource("2_x1kui")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=716100114]
+texture = ExtResource("1_u5d1g")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1789785042]
+position = Vector2(0, -3)
+shape = SubResource("CircleShape2D_4trcd")
+
+[node name="Interactable" parent="." unique_id=398723352 instance=ExtResource("2_4trcd")]
+interaction_name = "Recoger bayas"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Interactable" unique_id=793174591]
+position = Vector2(0, -3)
+shape = SubResource("CircleShape2D_6dq41")
+debug_color = Color(0.87187946, 0.27892, 0.5413752, 0.41960785)

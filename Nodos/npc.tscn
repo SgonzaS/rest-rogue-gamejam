@@ -1,0 +1,76 @@
+[gd_scene format=3 uid="uid://cixjup06dr02q"]
+
+[ext_resource type="Script" uid="uid://bci8ah0o87exc" path="res://Nodos/npc.gd" id="1_hxtpk"]
+[ext_resource type="Texture2D" uid="uid://dc5vojofwl1xo" path="res://Art/enemies/goblin/goblin_run_spritesheet.png" id="1_svefw"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hxtpk"]
+atlas = ExtResource("1_svefw")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sy32e"]
+atlas = ExtResource("1_svefw")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2o27m"]
+atlas = ExtResource("1_svefw")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hrxep"]
+atlas = ExtResource("1_svefw")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i03k5"]
+atlas = ExtResource("1_svefw")
+region = Rect2(64, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v6ulo"]
+atlas = ExtResource("1_svefw")
+region = Rect2(80, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_5m3h4"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hxtpk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sy32e")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2o27m")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hrxep")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i03k5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v6ulo")
+}],
+"loop": true,
+"name": &"caminar",
+"speed": 8.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_qhges"]
+radius = 6.0
+height = 16.0
+
+[node name="NPC" type="CharacterBody2D" unique_id=287722467 groups=["NPCs"]]
+script = ExtResource("1_hxtpk")
+speed = 50.0
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=747631950]
+position = Vector2(0, -8)
+sprite_frames = SubResource("SpriteFrames_5m3h4")
+animation = &"caminar"
+autoplay = "caminar"
+frame_progress = 0.5569091
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=701403285]
+position = Vector2(0, -8)
+shape = SubResource("CapsuleShape2D_qhges")
+debug_color = Color(0.6095177, 0.26071775, 0.93660796, 0.41960785)
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="." unique_id=1738809322]

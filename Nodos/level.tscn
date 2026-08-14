@@ -1,0 +1,42 @@
+[gd_scene format=3 uid="uid://dyjyik1npoto5"]
+
+[ext_resource type="Script" uid="uid://3lao2xu21h48" path="res://Nodos/enemy.gd" id="1_7ddwl"]
+[ext_resource type="Texture2D" uid="uid://cr0cpehhjo4fo" path="res://Art/enemies/slime/slime_idle_anim_f0.png" id="2_7ddwl"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_pqx8s"]
+radius = 6.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_7ddwl"]
+radius = 13.0
+
+[node name="Enemy1" type="CharacterBody2D" unique_id=1803888204 groups=["juego"]]
+motion_mode = 1
+script = ExtResource("1_7ddwl")
+speed = 75.0
+
+[node name="SlimeIdleSpritesheet" type="Sprite2D" parent="." unique_id=959561483]
+position = Vector2(0, -7)
+scale = Vector2(0.93749994, 0.99999994)
+texture = ExtResource("2_7ddwl")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2075560583]
+position = Vector2(0, -6)
+shape = SubResource("CircleShape2D_pqx8s")
+
+[node name="Timer" type="Timer" parent="." unique_id=981371236]
+wait_time = 0.5
+autostart = true
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="." unique_id=54972646]
+path_desired_distance = 15.0
+debug_enabled = true
+
+[node name="enemy_hitbox" type="Area2D" parent="." unique_id=1206344356]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="enemy_hitbox" unique_id=235616256]
+light_mask = 3
+visibility_layer = 3
+position = Vector2(0, -5)
+shape = SubResource("CircleShape2D_7ddwl")
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

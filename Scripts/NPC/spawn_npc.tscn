@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://boyfgf3yjehec"]
+
+[ext_resource type="Script" uid="uid://dou7majv2ndsr" path="res://Scripts/spawn_npc.gd" id="1_wttur"]
+[ext_resource type="PackedScene" uid="uid://brwqs3uynukh0" path="res://Nodos/npc_hechizo.tscn" id="2_2vlch"]
+[ext_resource type="PackedScene" uid="uid://bt464p3sauqaw" path="res://Nodos/npc_oro.tscn" id="3_eylp0"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wttur"]
+
+[node name="Spawn_enemy" type="Area2D" unique_id=1835422231]
+script = ExtResource("1_wttur")
+npc_hechizo_scene = ExtResource("2_2vlch")
+npc_oro_scene = ExtResource("3_eylp0")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1574265211]
+shape = SubResource("RectangleShape2D_wttur")
+
+[node name="cooldown_spawn" type="Timer" parent="." unique_id=1376193409]
+wait_time = 5.0
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="." unique_id=1028811257]
+avoidance_enabled = true
+
+[connection signal="timeout" from="cooldown_spawn" to="." method="_on_cooldown_spawn_timeout"]

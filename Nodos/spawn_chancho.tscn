@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://cn7yb3uv1hos7"]
+
+[ext_resource type="Script" uid="uid://7mbe6t5teued" path="res://Nodos/spawn_enemy.gd" id="1_l85bk"]
+[ext_resource type="PackedScene" uid="uid://cvwpd6qshqkf7" path="res://Nodos/range_enemy.tscn" id="2_spifn"]
+[ext_resource type="Resource" uid="uid://d0843ng5jfrmh" path="res://Items/Hongo.tres" id="3_67n0w"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rgms4"]
+size = Vector2(135.5, 99)
+
+[node name="spawn_chancho" type="Area2D" unique_id=960114632]
+script = ExtResource("1_l85bk")
+enemy_scene = ExtResource("2_spifn")
+item_para_clones = ExtResource("3_67n0w")
+
+[node name="respawntimer" type="Timer" parent="." unique_id=1666337179]
+wait_time = 4.0
+one_shot = true
+
+[node name="spawn_enemy_area" type="CollisionShape2D" parent="." unique_id=1684222470]
+position = Vector2(20.25, 56)
+shape = SubResource("RectangleShape2D_rgms4")

@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="Item" format=3 uid="uid://bw06oyaqlulck"]
+
+[ext_resource type="Script" uid="uid://2832k1g5f44j" path="res://Items/item.gd" id="1_ouip2"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_ouip2"]
+load_path = "res://.godot/imported/zanahoria.png-96360d2149b90dd504bb68aed80bf639.ctex"
+
+[resource]
+script = ExtResource("1_ouip2")
+nombre = "Zanahoria"
+icono = SubResource("CompressedTexture2D_ouip2")
+cantidad = 1
+metadata/_custom_type_script = "uid://2832k1g5f44j"
